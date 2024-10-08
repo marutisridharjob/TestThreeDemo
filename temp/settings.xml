@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+  <!-- Local repository path (optional) -->
+  <!-- Uncomment this to specify a local repository other than the default location (~/.m2/repository) -->
+  <!-- <localRepository>/path/to/your/local/repo</localRepository> -->
+
+  <mirrors>
+    <!-- Mirror for Maven Central (using a faster or a corporate repo, optional) -->
+    <mirror>
+      <id>central-mirror</id>
+      <mirrorOf>central</mirrorOf>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </mirror>
+
+    <!-- Example for an alternative central mirror, like JFrog or Nexus -->
+    <!-- <mirror>
+      <id>nexus-mirror</id>
+      <mirrorOf>*</mirrorOf>
+      <url>https://your-nexus-repository.com/repository/maven-public/</url>
+    </mirror> -->
+  </mirrors>
+
+  <proxies>
+    <!-- Proxy configuration (optional) -->
+    <!-- Uncomment if your project is behind a proxy -->
+    <!--
+    <proxy>
+      <id>example-proxy</id>
+      <active>true</active>
+      <protocol>http</protocol>
+      <host>proxy.example.com</host>
+      <port>8080</port>
+      <username>proxyuser</username>
+      <password>somepassword</password>
+      <nonProxyHosts>www.google.com|*.example.com</nonProxyHosts>
+    </proxy>
+    -->
+  </proxies>
+
+  <servers>
+    <!-- Example for server authentication (optional) -->
+    <!--
+    <server>
+      <id>example-repo</id>
+      <username>your-username</username>
+      <password>your-password</password>
+    </server>
+    -->
+  </servers>
+
+  <profiles>
+    <!-- Default profile (optional) -->
+    <!-- A generic profile that can be enabled by default -->
+    <profile>
+      <id>default-profile</id>
+      <repositories>
+        <repository>
+          <id>central</id>
+          <url>https://repo.maven.apache.org/maven2</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
+
+  <!-- Enable this default profile -->
+  <activeProfiles>
+    <activeProfile>default-profile</activeProfile>
+  </activeProfiles>
+</settings>

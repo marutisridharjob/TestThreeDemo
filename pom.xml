@@ -1,41 +1,147 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example</groupId>
     <artifactId>microprofile-student-api</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!-- Dependency Management -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- MicroProfile BOM 4.1 -->
+            <dependency>
+                <groupId>org.eclipse.microprofile</groupId>
+                <artifactId>microprofile-bom</artifactId>
+                <version>4.1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
-        <!-- MicroProfile Dependencies -->
+        <!-- MicroProfile APIs (no need to add all individual APIs, they are included in the BOM) -->
         <dependency>
             <groupId>org.eclipse.microprofile</groupId>
             <artifactId>microprofile</artifactId>
-            <version>4.0</version>
-            <scope>provided</scope>
+            <version>4.1</version>
         </dependency>
 
-        <!-- Jackson for JSON serialization -->
+        <!-- MicroProfile REST client -->
+        <dependency>
+            <groupId>org.eclipse.microprofile.rest.client</groupId>
+            <artifactId>microprofile-rest-client-api</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+        <!-- MicroProfile Config -->
+        <dependency>
+            <groupId>org.eclipse.microprofile.config</groupId>
+            <artifactId>microprofile-config-api</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+        <!-- MicroProfile Health -->
+        <dependency>
+            <groupId>org.eclipse.microprofile.health</groupId>
+            <artifactId>microprofile-health-api</artifactId>
+            <version>3.0</version>
+        </dependency>
+
+        <!-- MicroProfile Metrics -->
+        <dependency>
+            <groupId>org.eclipse.microprofile.metrics</groupId>
+            <artifactId>microprofile-metrics-api</artifactId>
+            <version>3.0</version>
+        </dependency>
+
+        <!-- MicroProfile JWT Auth -->
+        <dependency>
+            <groupId>org.eclipse.microprofile.jwt</groupId>
+            <artifactId>microprofile-jwt-auth-api</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+        <!-- MicroProfile Fault Tolerance -->
+        <dependency>
+            <groupId>org.eclipse.microprofile.fault-tolerance</groupId>
+            <artifactId>microprofile-fault-tolerance-api</artifactId>
+            <version>3.0</version>
+        </dependency>
+
+        <!-- Jackson for JSON support -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.12.0</version>
         </dependency>
 
+        <!-- Testing Dependencies -->
         <!-- Microshed Testing -->
         <dependency>
             <groupId>org.microshed</groupId>
             <artifactId>microshed-testing-core</artifactId>
-            <version>0.9</version>
+            <version>0.10</version>
             <scope>test</scope>
         </dependency>
 
-        <!-- RestAssured -->
+        <dependency>
+            <groupId>org.microshed</groupId>
+            <artifactId>microshed-testing-liberty</artifactId>
+            <version>0.10</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- RestAssured for testing -->
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>4.3.3</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- JUnit 5 for unit testing -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.7.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.7.0</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Surefire Plugin for running tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>jboss-public-repository-group</id>
+            <name>JBoss Public Repository Group</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>sonatype-releases</id>
+            <name>Sonatype Releases</name>
+            <url>https://oss.sonatype.org/content/repositories/releases/</url>
+        </repository>
+        <repository>
+            <id>eclipse-releases</id>
+            <url>https://repo.eclipse.org/content/groups/releases/</url>
+        </repository>
+    </repositories>
 </project>
